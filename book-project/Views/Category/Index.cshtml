@@ -1,0 +1,16 @@
+@model List<Category>
+
+<div class="text-center">
+    <h1 class="display-4">Categories</h1>
+    
+    @foreach(var obj in Model)
+    {
+        <p>@obj.Name</p>
+    }
+    
+    <div class="mt-5 ">
+        <a class="rounded bg-blue-500 px-2 py-1" asp-controller="Category" asp-action="Create">Add category</a>
+    </div>
+    
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
