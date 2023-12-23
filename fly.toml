@@ -1,0 +1,26 @@
+# fly.toml app configuration file generated for book-project on 2023-12-23T16:22:52Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "book-project"
+primary_region = "lhr"
+
+[build]
+  image = "xray79/book-project:latest"
+
+[env]
+  ASPNETCORE_URLS="http://+:8080"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 1024
