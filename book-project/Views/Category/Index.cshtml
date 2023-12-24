@@ -1,16 +1,48 @@
+@using Microsoft.AspNetCore.Server.Kestrel.Core
 @model List<Category>
 
 <div class="text-center">
-    <h1 class="display-4">Categories</h1>
-    
-    @foreach(var obj in Model)
-    {
-        <p>@obj.Name</p>
-    }
+<h2 class="text-4xl font-extrabold dark:text-white">Categories</h2>
+
+
+
+<div class="relative overflow-x-auto">
+    <table class="w-1/2 mx-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-center">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Category
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Display Order
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    @obj.Name
+                </th>
+                <td class="px-6 py-4">
+                    @obj.DisplayOrder
+                </td>
+                <td class="px-6 py-4">
+                    <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="text-blue-500 hover:underline mr-3">Edit</a>
+                    <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id" class="text-red-500 hover:underline">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
     
     <div class="mt-5 ">
         <a class="rounded bg-blue-500 px-2 py-1" asp-controller="Category" asp-action="Create">Add category</a>
     </div>
-    
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
