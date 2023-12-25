@@ -5,6 +5,9 @@ EXPOSE 8080
 # copy .csproj and restore as distinct layers
 COPY "book-project.sln" "book-project.sln"
 COPY "book-project/book-project.csproj" "book-project/book-project.csproj"
+COPY "book-project/book-project.data-access.csproj" "book-project/book-project.data-access.csproj"
+COPY "book-project/book-project.models.csproj" "book-project/book-project.models.csproj"
+COPY "book-project/book-project.utility.csproj" "book-project/book-project.utility.csproj"
 
 RUN dotnet restore "book-project.sln"
 
