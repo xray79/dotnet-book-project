@@ -1,4 +1,4 @@
-using book_project.Data;
+using book_project.data_access.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
