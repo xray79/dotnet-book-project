@@ -1,5 +1,5 @@
-using book_project.Data;
-using book_project.Models;
+using book_project.data_access.Data;
+using book_project.models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace book_project.Controllers;

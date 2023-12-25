@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
-        <Nullable>enable</Nullable>
+        <RootNamespace>book_project.data_access</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
-        <RootNamespace>book_project</RootNamespace>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,7 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\book-project.data-access\book-project.data-access.csproj" />
+      <ProjectReference Include="..\book-project.models\book-project.models.csproj" />
     </ItemGroup>
 
 </Project>

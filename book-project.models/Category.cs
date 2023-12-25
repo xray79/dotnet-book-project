@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace book_project.Models;
+namespace book_project.models;
 
 public class Category
 {
@@ -10,7 +10,7 @@ public class Category
     [Required]
     [MaxLength(30)]
     [DisplayName("Category Name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
     [DisplayName("Display Order")]
     [Range(1,100,ErrorMessage = "Must be between 1-100")]
     public int DisplayOrder { get; set; }
