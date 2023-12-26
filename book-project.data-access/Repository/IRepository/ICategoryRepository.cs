@@ -1,0 +1,9 @@
+using book_project.models;
+
+namespace book_project.data_access.Repository.IRepository;
+
+public interface ICategoryRepository : IRepository<Category>
+{
+    void Update(Category obj);
+    void Save();
+}

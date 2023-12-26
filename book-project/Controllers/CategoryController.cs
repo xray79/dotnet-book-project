@@ -1,4 +1,5 @@
 using book_project.data_access.Data;
+using book_project.data_access.Repository.IRepository;
 using book_project.models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,17 +7,17 @@ namespace book_project.Controllers;
 
 public class CategoryController : Controller
 {
-    private readonly ApplicationDbContext _db;
+    private readonly ICategoryRepository _categoryRepository;
 
-    public CategoryController(ApplicationDbContext db)
+    public CategoryController(ICategoryRepository db)
     { 
-        _db = db;
+        _categoryRepository = db;
     }
     
     [HttpGet]
     public IActionResult Index()
     {
-        List<Category> objCategoryList = _db.Categories.ToList();
+        List<Category> objCategoryList = _categoryRepository.GetAll().ToList();
         return View(objCategoryList);
     }
 
@@ -36,8 +37,8 @@ public class CategoryController : Controller
         
         if (!ModelState.IsValid) return View();
         
-        _db.Categories.Add(obj);
-        _db.SaveChanges();
+        _categoryRepository.Add(obj);
+        _categoryRepository.Save();
         
         TempData["success"] = "Category created successfully";
         return RedirectToAction("Index");
@@ -51,7 +52,7 @@ public class CategoryController : Controller
             return NotFound(); 
         }
 
-        Category? categoryFromDb = _db.Categories.Find(id);
+        Category? categoryFromDb = _categoryRepository.Get((i => i.Id == id));
         if (categoryFromDb == null)
         {
             return NotFound();
@@ -65,8 +66,8 @@ public class CategoryController : Controller
     {
         if (ModelState.IsValid)
         {
-            _db.Categories.Update(obj);
-            _db.SaveChanges();
+            _categoryRepository.Update(obj);
+            _categoryRepository.Save();
         }
 
         TempData["success"] = "Category edited successfully";
@@ -81,7 +82,7 @@ public class CategoryController : Controller
             return NotFound(); 
         }
 
-        Category? categoryFromDb = _db.Categories.Find(id);
+        Category? categoryFromDb = _categoryRepository.Get(i => i.Id == id);
         if (categoryFromDb == null)
         {
             return NotFound();
@@ -93,15 +94,15 @@ public class CategoryController : Controller
     [HttpPost, ActionName("Delete")]
     public IActionResult DeletePost(int? id)
     {
-        Category? categoryFromDb = _db.Categories.Find(id);
+        Category? categoryFromDb = _categoryRepository.Get(i => i.Id == id);
         
         if (categoryFromDb == null)
         {
             return NotFound();
         }
 
-        _db.Remove(categoryFromDb);
-        _db.SaveChanges();
+        _categoryRepository.Remove(categoryFromDb);
+        _categoryRepository.Save();
         
         TempData["success"] = "Category deleted successfully";
         return RedirectToAction("Index");
