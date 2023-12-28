@@ -1,23 +1,22 @@
-using book_project.data_access.Data;
 using book_project.data_access.Repository.IRepository;
 using book_project.models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace book_project.Controllers;
+namespace book_project.Areas.Admin.Controllers;
 
 public class CategoryController : Controller
 {
-    private readonly ICategoryRepository _categoryRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public CategoryController(ICategoryRepository db)
+    public CategoryController(IUnitOfWork unitOfWork)
     { 
-        _categoryRepository = db;
+        _unitOfWork = unitOfWork;
     }
     
     [HttpGet]
     public IActionResult Index()
     {
-        List<Category> objCategoryList = _categoryRepository.GetAll().ToList();
+        List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
         return View(objCategoryList);
     }
 
@@ -37,8 +36,8 @@ public class CategoryController : Controller
         
         if (!ModelState.IsValid) return View();
         
-        _categoryRepository.Add(obj);
-        _categoryRepository.Save();
+        _unitOfWork.Category.Add(obj);
+        _unitOfWork.Save();
         
         TempData["success"] = "Category created successfully";
         return RedirectToAction("Index");
@@ -52,7 +51,7 @@ public class CategoryController : Controller
             return NotFound(); 
         }
 
-        Category? categoryFromDb = _categoryRepository.Get((i => i.Id == id));
+        Category? categoryFromDb = _unitOfWork.Category.Get((i => i.Id == id));
         if (categoryFromDb == null)
         {
             return NotFound();
@@ -66,8 +65,8 @@ public class CategoryController : Controller
     {
         if (ModelState.IsValid)
         {
-            _categoryRepository.Update(obj);
-            _categoryRepository.Save();
+            _unitOfWork.Category.Update(obj);
+            _unitOfWork.Save();
         }
 
         TempData["success"] = "Category edited successfully";
@@ -82,7 +81,7 @@ public class CategoryController : Controller
             return NotFound(); 
         }
 
-        Category? categoryFromDb = _categoryRepository.Get(i => i.Id == id);
+        Category? categoryFromDb = _unitOfWork.Category.Get(i => i.Id == id);
         if (categoryFromDb == null)
         {
             return NotFound();
@@ -94,15 +93,15 @@ public class CategoryController : Controller
     [HttpPost, ActionName("Delete")]
     public IActionResult DeletePost(int? id)
     {
-        Category? categoryFromDb = _categoryRepository.Get(i => i.Id == id);
+        Category? categoryFromDb = _unitOfWork.Category.Get(i => i.Id == id);
         
         if (categoryFromDb == null)
         {
             return NotFound();
         }
 
-        _categoryRepository.Remove(categoryFromDb);
-        _categoryRepository.Save();
+        _unitOfWork.Category.Remove(categoryFromDb);
+        _unitOfWork.Save();
         
         TempData["success"] = "Category deleted successfully";
         return RedirectToAction("Index");
