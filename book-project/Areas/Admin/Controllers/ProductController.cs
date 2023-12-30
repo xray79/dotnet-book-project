@@ -30,7 +30,7 @@ public class ProductController : Controller
     public IActionResult Upsert(int? id ) // Update + insert
     {
         IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category
-            .GetAll("Category").Select(u => new SelectListItem
+            .GetAll().Select(u => new SelectListItem
             {
                 Text = u.Name,
                 Value = u.Id.ToString()
@@ -102,7 +102,7 @@ public class ProductController : Controller
         else
         {
             productVm.CategoryList = _unitOfWork.Category
-                .GetAll("Category").Select(u => new SelectListItem
+                .GetAll().Select(u => new SelectListItem
                 {
                     Text = u.Name,
                     Value = u.Id.ToString()
