@@ -45,7 +45,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     // or from the environment variable from FlyIO, use it to set up your DbContext.
     options.UseNpgsql(connStr);
 });
-
+    
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();

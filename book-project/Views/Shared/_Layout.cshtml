@@ -14,6 +14,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/rnpeqmkn9441tazhnqnm7p3loyazot3uk7qcsa0506984pp1/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 </head>
 <body>
 <header>
@@ -50,6 +53,9 @@
                     <li>
                         <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Categories</a>
                     </li>
+                    <li>
+                        <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Products</a>
+                    </li>
                 </ul>
                 <div class="py-1">
                     <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
@@ -71,12 +77,13 @@
 
 <footer class="border-top footer text-muted">
     <div class="container mx-auto">
-        &copy; 2023 - book_project - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        &copy; 2023 - book_project - <a asp-area="Customer" asp-controller="Home" asp-action="Privacy">Privacy</a>
     </div>
 </footer>
-@* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
-@* <script src="~/js/site.js" asp-append-version="true"></script> *@
+<script src="~/js/site.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

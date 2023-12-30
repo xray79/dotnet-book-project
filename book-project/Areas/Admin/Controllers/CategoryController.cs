@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace book_project.Areas.Admin.Controllers;
 
+[Area("Admin")]
 public class CategoryController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;

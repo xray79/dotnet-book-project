@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace book_project.Areas.Customer.Controllers;
 
+[Area("Customer")]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
