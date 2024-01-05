@@ -3,50 +3,7 @@
 <div class="text-center">
     <h2 class="text-4xl font-extrabold dark:text-white">Books</h2>
 
-    <div class="relative overflow-x-auto">
-        @* <table class="w-1/2 mx-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"> *@
-        @*     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-center"> *@
-        @*         <tr> *@
-        @*             <th scope="col" class="px-6 py-3"> *@
-        @*                 Title *@
-        @*             </th> *@
-        @*             <th scope="col" class="px-6 py-3"> *@
-        @*                 Author *@
-        @*             </th> *@
-        @*             <th scope="col" class="px-6 py-3"> *@
-        @*                 Category *@
-        @*             </th> *@
-        @*             <th scope="col" class="px-6 py-3"> *@
-        @*                 Actions *@
-        @*             </th> *@
-        @*         </tr> *@
-        @*     </thead> *@
-        @*     <tbody> *@
-        @*     @foreach (var obj in Model) *@
-        @*     { *@
-        @*         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center"> *@
-        @*             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"> *@
-        @*                 @obj.Title *@
-        @*             </th> *@
-        @*             <td class="px-6 py-4"> *@
-        @*                 @obj.Author *@
-        @*             </td> *@
-        @*             <td class="px-6 py-4"> *@
-        @*                 @obj.Category.Name *@
-        @*             </td> *@
-        @*             <td class="px-6 py-4"> *@
-        @*                 <a asp-controller="Product" asp-action="Upsert" asp-route-id="@obj.Id" class="text-blue-500 hover:underline mr-3"> *@
-        @*                     Edit *@
-        @*                 </a> *@
-        @*                 <a asp-controller="Product" asp-action="Delete" asp-route-id="@obj.Id" class="text-red-500 hover:underline"> *@
-        @*                     Delete *@
-        @*                 </a> *@
-        @*             </td> *@
-        @*         </tr> *@
-        @*     } *@
-        @*     </tbody> *@
-        @* </table> *@
-    
+    <div class="relative container mx-auto px-5 overflow-x-auto">
         <table
             id="tblData">
             <thead>
