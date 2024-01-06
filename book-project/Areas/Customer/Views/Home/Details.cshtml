@@ -1,20 +1,54 @@
-@model Product
+@model ShoppingCart
 
 <section class="text-center grid place-items-center py-18">
+    <form method="post">
+        <input type="number" value="@Model.Id" hidden>
+        <dl class="max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
+            <div class="flex flex-col pb-3">
+                <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Title</dt>
+                <dd class="text-lg font-semibold text-black">@Model.Product.Title</dd>
+            </div><div class="flex flex-col pb-3">
+                <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">ISBN</dt>
+                <dd class="text-lg font-semibold text-black">@Model.Product.ISBN</dd>
+            </div>
+            <div class="flex flex-col py-3">
+                <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Author</dt>
+                <dd class="text-lg font-semibold  text-black">@Model.Product.Author</dd>
+            </div>
+            <div class="flex flex-col pt-3">
+                <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Description</dt>
+                <dd class="text-lg font-semibold  text-black">@Model.Product.Description</dd>
+            </div><div class="flex flex-col pt-3">
+                <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Category</dt>
+                <dd class="text-lg font-semibold  text-black">@Model.Product.Category</dd>
+            </div>
+            <div class="flex flex-col pt-3">
+                <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Price</dt>
+                <dd class="text-lg font-semibold  text-black">@Model.Product.Price</dd>
+            </div>
+        </dl>
+        @* *@
+        @* <div class="row pl-2 mb-3"> *@
+        @*     <div class="col-md-4"> *@
+        @*         <div class="input-group mb-3"> *@
+        @*             <span class="input-group-text bg-primary text-white border-0 fw-semibold" *@
+        @*                   id="inputGroup-sizing-default"> *@
+        @*                 Count *@
+        @*             </span> *@
+        @*             <input type="number" value="1" class="form-control text-end" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/> *@
+        @*         </div> *@
+        @*     </div> *@
+        @* </div> *@
+        @* *@
+        @* <div class="row"> *@
+        @*     <div class="col-12 col-md-6 pb-1"> *@
+        @*         <button type="submit" *@
+        @*                 class="btn btn-primary bg-gradient  w-100 py-2 text-uppercase fw-semibold"> *@
+        @*             Add to Cart *@
+        @*         </button> *@
+        @*     </div> *@
+        @* </div> *@
+    </form>
     
-<dl class="max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
-    <div class="flex flex-col pb-3">
-        <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Title</dt>
-        <dd class="text-lg font-semibold text-black">@Model.Title</dd>
-    </div>
-    <div class="flex flex-col py-3">
-        <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Author</dt>
-        <dd class="text-lg font-semibold  text-black">@Model.Author</dd>
-    </div>
-    <div class="flex flex-col pt-3">
-        <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Description</dt>
-        <dd class="text-lg font-semibold  text-black">@Model.Description</dd>
-    </div>
-</dl>
 
 </section>

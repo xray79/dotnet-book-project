@@ -2,18 +2,21 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using book_project.data_access.Data;
 
 #nullable disable
 
-namespace book_project.Migrations
+namespace book_project.data_access.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240106091642_updateCompanyTable")]
+    partial class updateCompanyTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -291,38 +294,6 @@ namespace book_project.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "1 Tech Street",
-                            City = "London",
-                            Name = "Tech",
-                            PhoneNumber = "0748392857",
-                            PostalCode = "SW1 5FD",
-                            State = "England"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Address = "1 Silicon Street",
-                            City = "London",
-                            Name = "SoftwareSol",
-                            PhoneNumber = "0748392857",
-                            PostalCode = "SW1 5FD",
-                            State = "England"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Address = "54 Oxford Street",
-                            City = "London",
-                            Name = "Generic software",
-                            PhoneNumber = "0748392857",
-                            PostalCode = "SW1 5FD",
-                            State = "England"
-                        });
                 });
 
             modelBuilder.Entity("book_project.models.Product", b =>
@@ -461,33 +432,6 @@ namespace book_project.Migrations
                         });
                 });
 
-            modelBuilder.Entity("book_project.models.ShoppingCart", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ApplicationUserId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("Count")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ShoppingCarts");
-                });
-
             modelBuilder.Entity("book_project.models.ApplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
@@ -498,10 +442,6 @@ namespace book_project.Migrations
                     b.Property<string>("City")
                         .HasColumnType("text");
 
-                    b.Property<int?>("CompanyId")
-                        .IsRequired()
-                        .HasColumnType("integer");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -511,8 +451,6 @@ namespace book_project.Migrations
 
                     b.Property<string>("State")
                         .HasColumnType("text");
-
-                    b.HasIndex("CompanyId");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
@@ -577,36 +515,6 @@ namespace book_project.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("book_project.models.ShoppingCart", b =>
-                {
-                    b.HasOne("book_project.models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("book_project.models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ApplicationUser");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("book_project.models.ApplicationUser", b =>
-                {
-                    b.HasOne("book_project.models.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Company");
                 });
 #pragma warning restore 612, 618
         }
