@@ -13,6 +13,7 @@ public class ApplicationDbContext: IdentityDbContext
     public DbSet<Category> Categories { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+    public DbSet<Company> Companies { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -21,6 +22,40 @@ public class ApplicationDbContext: IdentityDbContext
         modelBuilder.Entity<Category>().HasData(
             new Category { Id = 1, DisplayOrder = 1, Name = "Fiction" },
             new Category { Id = 2, DisplayOrder = 2, Name = "Non-Fiction" }
+        );
+
+        modelBuilder.Entity<Company>().HasData(
+            new Company
+            {
+                Id = 1,
+                Address = "1 Tech Street",
+                Name = "Tech",
+                City = "London",
+                State = "England",
+                PostalCode = "SW1 5FD",
+                PhoneNumber = "0748392857"
+                
+            },
+            new Company
+            {
+                Id = 2,
+                Address = "1 Silicon Street",
+                Name = "SoftwareSol",
+                City = "London",
+                State = "England",
+                PostalCode = "SW1 5FD",
+                PhoneNumber = "0748392857"
+            },
+            new Company
+            {
+                Id = 3,
+                Address = "54 Oxford Street",
+                Name = "Generic software",
+                City = "London",
+                State = "England",
+                PostalCode = "SW1 5FD",
+                PhoneNumber = "0748392857"
+            }
         );
 
         modelBuilder.Entity<Product>().HasData(

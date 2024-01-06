@@ -39,6 +39,12 @@
                 </select>
             </div>
             <div class="form-floating mb-3">
+                <select asp-for="Input.CompanyId" asp-items="@Model.Input.CompanyList" style="display: none">
+                    <option disabled selected>--Select Company--</option>
+                </select>
+            </div>
+            
+            <div class="form-floating mb-3">
                 <input asp-for="Input.Address" class="form-control" aria-required="true" placeholder="Address" />
                 <label asp-for="Input.Address">Address</label>
                 <span asp-validation-for="Input.Address" class="text-danger"></span>
@@ -100,5 +106,6 @@
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    <partial name="_ValidationScriptsPartial"/>
+    <script src="/js/register.js"></script>
 }

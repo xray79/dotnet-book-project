@@ -261,6 +261,70 @@ namespace book_project.Migrations
                         });
                 });
 
+            modelBuilder.Entity("book_project.models.Company", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("text");
+
+                    b.Property<string>("City")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PostalCode")
+                        .HasColumnType("text");
+
+                    b.Property<string>("State")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Companies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "1 Tech Street",
+                            City = "London",
+                            Name = "Tech",
+                            PhoneNumber = "0748392857",
+                            PostalCode = "SW1 5FD",
+                            State = "England"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "1 Silicon Street",
+                            City = "London",
+                            Name = "SoftwareSol",
+                            PhoneNumber = "0748392857",
+                            PostalCode = "SW1 5FD",
+                            State = "England"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "54 Oxford Street",
+                            City = "London",
+                            Name = "Generic software",
+                            PhoneNumber = "0748392857",
+                            PostalCode = "SW1 5FD",
+                            State = "England"
+                        });
+                });
+
             modelBuilder.Entity("book_project.models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -407,6 +471,10 @@ namespace book_project.Migrations
                     b.Property<string>("City")
                         .HasColumnType("text");
 
+                    b.Property<int?>("CompanyId")
+                        .IsRequired()
+                        .HasColumnType("integer");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -416,6 +484,8 @@ namespace book_project.Migrations
 
                     b.Property<string>("State")
                         .HasColumnType("text");
+
+                    b.HasIndex("CompanyId");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
@@ -480,6 +550,17 @@ namespace book_project.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("book_project.models.ApplicationUser", b =>
+                {
+                    b.HasOne("book_project.models.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
                 });
 #pragma warning restore 612, 618
         }

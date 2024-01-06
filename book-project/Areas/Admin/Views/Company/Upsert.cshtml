@@ -1,0 +1,90 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Company
+
+<h2 class="mx-auto text-xl text-center">
+    @(Model.Id != 0 ? "Update" : "Create") Company
+</h2>
+
+<form method="post" class="w-3/4 mx-auto" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="mb-5"></div>
+    <input asp-for="Id" hidden>
+    
+    <div class="container flex justify-between">
+        <div class="w-8/12 mr-3">
+            <div class="mb-6">
+                <label asp-for="Name" class="block mb-2 text-sm font-medium text-gray-900">
+                </label>
+                <input asp-for="Name" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <span asp-validation-for="Name" class="text-red-500"></span>
+            </div>
+        
+            <div class="mb-6">
+                <label asp-for="PhoneNumber" class="block mb-2 text-sm font-medium text-gray-900">
+                </label>
+                <input asp-for="PhoneNumber" type="text" id="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <span asp-validation-for="PhoneNumber" class="text-red-500"></span>
+            </div>
+        
+            <div class="mb-6">
+                <label asp-for="Address" class="block mb-2 text-sm font-medium text-gray-900">
+                </label>
+                <input asp-for="Address" type="text" id="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <span asp-validation-for="Address" class="text-red-500"></span>
+            </div>
+        
+            <div class="mb-6">
+                <label asp-for="City" class="block mb-2 text-sm font-medium text-gray-900">
+                </label>
+                <input asp-for="City" type="text" id="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <span asp-validation-for="City" class="text-red-500"></span>
+            </div>
+        
+            <div class="mb-6">
+                <label asp-for="State" class="block mb-2 text-sm font-medium text-gray-900">
+                </label>
+                <input asp-for="State" type="text" id="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <span asp-validation-for="State" class="text-red-500"></span>
+            </div>
+        
+            <div class="mb-6">
+                <label asp-for="PostalCode" class="block mb-2 text-sm font-medium text-gray-900">
+                </label>
+                <input asp-for="PostalCode" type="text" id="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <span asp-validation-for="PostalCode" class="text-red-500"></span>
+            </div>
+        </div>
+    </div>
+    
+    @if (Model.Id != 0)
+    {
+        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+            Update
+        </button>
+    }
+    else
+    {
+        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+            Create
+        </button>
+    }
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+        <script>
+          tinymce.init({
+            selector: 'textarea',
+            plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons lists searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+              { value: 'First.Name', title: 'First Name' },
+              { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+          });
+        </script>
+    }
+}
