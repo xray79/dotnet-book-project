@@ -1,18 +1,18 @@
-@model List<Product>
+
 
 <div class="text-center">
-    <h2 class="text-4xl font-extrabold dark:text-white">Books</h2>
+    <h2 class="text-4xl font-extrabold dark:text-white">Companies</h2>
 
     <div class="relative container mx-auto px-5 overflow-x-auto">
         <table
             id="tblData">
             <thead>
             <tr>
-                <th>Title</th>
-                <th>ISBN</th>
-                <th>Price</th>
-                <th>Author</th>
-                <th>Category</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Phone Number</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -20,9 +20,9 @@
     </div>
 
     <div class="mt-5 ">
-        <a asp-controller="Product" asp-action="Upsert">
+        <a asp-controller="Company" asp-action="Upsert">
             <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                Add Book
+                Add Company
             </button>
         </a>
     </div>
@@ -31,5 +31,5 @@
 @section Scripts
 {
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <script src="/js/site.js"></script>
+    <script src="/js/company.js"></script>
 }
